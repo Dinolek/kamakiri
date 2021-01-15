@@ -46,12 +46,6 @@ def load_payload(dev):
     log("Disable watchdog")
     dev.write32(0x10007000, 0x22000000)
 
-    thread = UserInputThread()
-    thread.start()
-    while not thread.done:
-        dev.write32(0x10007008, 0x1971) # low-level watchdog kick
-        time.sleep(1)
-
     d = dev.dev
 
     addr = 0x10007050
